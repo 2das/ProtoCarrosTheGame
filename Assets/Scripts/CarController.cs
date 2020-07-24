@@ -6,8 +6,33 @@ public class CarController : MonoBehaviour
 {
     public void GetInput() 
     {
-        mHorizontalInput = Input.GetAxis("Horizontal");
-        mVerticalInput = Input.GetAxis("Vertical");
+        switch (playerID)
+        {
+            case 1:
+                mHorizontalInput = Input.GetAxis("P1-Horizontal");
+                mVerticalInput = Input.GetAxis("P1-Vertical");
+                break;
+
+            case 2:
+                mHorizontalInput = Input.GetAxis("P2-Horizontal");
+                mVerticalInput = Input.GetAxis("P2-Vertical");
+                break;
+
+            case 3:
+                mHorizontalInput = Input.GetAxis("P3-Horizontal");
+                mVerticalInput = Input.GetAxis("P3-Vertical");
+                break;
+
+            case 4:
+                mHorizontalInput = Input.GetAxis("P4-Horizontal");
+                mVerticalInput = Input.GetAxis("P4-Vertical");
+                break;
+
+            default:
+                mHorizontalInput = Input.GetAxis("P1-Horizontal");
+                mVerticalInput = Input.GetAxis("P1-Vertical");
+                break;
+        }      
     }
 
     public void Steer()
@@ -79,5 +104,6 @@ public class CarController : MonoBehaviour
     public float maxSteerAngle = 30;
     public float motorForce = 50;
 
+    public int playerID = 0;
 
 }
