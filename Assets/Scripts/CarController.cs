@@ -48,11 +48,10 @@ public class CarController : MonoBehaviour
         {
             frontDriverWheel.motorTorque = mVerticalInput * (motorForce / 2);
             frontPassangerWheel.motorTorque = mVerticalInput * (motorForce / 2);
-
-            Debug.Log("mamasita linda");
         }
 
-        if(Input.GetKey("space")){
+        if(Input.GetKey("space"))
+        {
             frontDriverWheel.motorTorque = 0;
             frontPassangerWheel.motorTorque = 0;
         }

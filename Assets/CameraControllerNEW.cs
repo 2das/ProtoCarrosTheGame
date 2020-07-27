@@ -4,15 +4,43 @@ using UnityEngine;
 
 public class CameraControllerNEW : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float detectionRange = 20;
+
+    List<GameObject> cars = new List<GameObject>();
+    List<GameObject> carsAtRange = new List<GameObject>();
+    
+
+    private void Start()
     {
-        
+        foreach (GameObject c in GameObject.FindGameObjectsWithTag("car"))
+            cars.Add(c);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        //DETECTAMOS COCHES ALREDEDOR
+        foreach (GameObject c in cars)
+        {
+            if (Vector3.Distance(transform.position, c.transform.position) < detectionRange)
+            {
+                if (!carsAtRange.Contains(c))
+                    carsAtRange.Add(c);
+            }
+
+            else
+            {
+                if(carsAtRange.Contains(c))
+                    carsAtRange.Remove(c);
+            }
+        }
+
+        //MIRAMOS COCHES ALREDEDOR
+        Vector3 groupPoint = Vector3.zero;
+        foreach (GameObject c in carsAtRange)
+            groupPoint += c.transform.position;
+       
+        groupPoint /= carsAtRange.Count;
+
+        transform.LookAt(groupPoint);
     }
 }
